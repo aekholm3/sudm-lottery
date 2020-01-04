@@ -7,6 +7,7 @@ FIRST_NAME_COLUMN = 2
 LAST_NAME_COL = 3
 TOTAL_RAISED_COL = 13
 LINE_ZERO_SIGNIFIER= 'transId'
+REFERRED_COLUMN = 40
 
 def handler():
     num_tickets = []
@@ -18,6 +19,8 @@ def handler():
             name = line[FIRST_NAME_COLUMN] + ' ' + line[LAST_NAME_COL]
             individual_tickets = int(float(line[TOTAL_RAISED_COL])) // 10
             num_tickets.extend([name] * individual_tickets)
+            if not len(line[REFERRED_COLUMN]) == 0:
+                num_tickets.append(line[REFERRED_COLUMN])
     return num_tickets
 
 if __name__ == '__main__':
